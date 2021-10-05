@@ -18,6 +18,7 @@ namespace MyStore.Pages
             this.map.Add(typeof(ISearch), new Lazy<object>(() => new Search(driver)));
             this.map.Add(typeof(IContactUS), new Lazy<object>(() => new ContactUs(driver)));
             this.map.Add(typeof(ISignIn), new Lazy<object>(() => new SignIn(driver)));
+            this.map.Add(typeof(IWomenPage), new Lazy<object>(() => new WomenPage(driver)));
         }
         public PageLoader(IWebDriver driver, IWebElement element)
         {
