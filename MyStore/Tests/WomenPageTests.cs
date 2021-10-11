@@ -40,14 +40,14 @@ namespace MyStore.Tests
         public void WomenPage_ExpandFirst()
         {
            bool isExpanded= womenPage.Expand_FirstTreeNode();
-            Assert.IsFalse(isExpanded);
+            Assert.IsTrue(isExpanded);
         }
 
         [Test, Order(3)]
         public void WomenPage_ExpandSecond()
         {
             bool isExpanded = womenPage.Expand_SecondTreeNode();
-            Assert.IsFalse(isExpanded);
+            Assert.IsTrue(isExpanded);
         }
     }
 }

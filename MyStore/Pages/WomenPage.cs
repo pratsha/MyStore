@@ -20,38 +20,46 @@ namespace MyStore.Pages
         IWebElement We_FirstLeftColumnExpandCollapse { get => We_LeftColumnBlockContent.FindElement(By.XPath("//li[1]/span")); }
         IWebElement We_SecondLeftColumnExpandCollapse { get => We_LeftColumnBlockContent.FindElement(By.XPath("//li[2]/span")); }
 
-        IReadOnlyCollection<IWebElement> We_ElementsInFirstList  => We_LeftColumnBlockContent.FindElements(By.XPath("//li[1]/ul/li[1]"));
-        IReadOnlyCollection<IWebElement> We_ElementsInSecondList => We_LeftColumnBlockContent.FindElements(By.XPath("//li[1]/ul/li[2]"));
+        IWebElement We_ElementsInFirstList  => We_LeftColumnBlockContent.FindElement(By.XPath("//li[1]/ul"));
+        IWebElement We_ElementsInSecondList => We_LeftColumnBlockContent.FindElement(By.XPath("//li[2]/ul"));
         public bool Expand_FirstTreeNode()
         {
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             We_FirstLeftColumnExpandCollapse.Click();
-          
+            ////*[@id="categories_block_left"]/div/ul/li[1]/ul
+        
+            bool isDisplayed =  Driver.FindElement(By.XPath("//*[@id='categories_block_left']/div/ul/li[1]/ul")).Displayed; 
 
-            bool isDisplayed = false;
 
-            foreach (var item in We_ElementsInFirstList)
-            {
-                isDisplayed = item.Displayed ? true : false;
-                if(!isDisplayed)
-                {
-                    break;
-                }
-            }
+            //foreach (var item in Driver.FindElements(By.XPath("//li[1]/ul/li[1]/ul")))
+            //{
+            //    Console.WriteLine(item.GetAttribute("style"));
+
+            //    isDisplayed = wait.Until(Driver => item.Displayed);
+            //    if (!isDisplayed)
+            //    {
+            //        break;
+            //    }
+            //}
             return isDisplayed;
         }
         public bool Expand_SecondTreeNode()
         {
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             We_SecondLeftColumnExpandCollapse.Click();
-            bool isDisplayed=false;
-           //        Console.WriteLine(We_LeftColumnBlockContent.FindElements(By.CssSelector("[class='grower CLOSE']")).Count);
-            foreach (var item in We_ElementsInSecondList)
-            {
-                isDisplayed=item.Displayed ? true : false;
-                if (!isDisplayed)
-                {
-                    break;
-                }
-            }
+            bool isDisplayed = Driver.FindElement(By.XPath("//*[@id='categories_block_left']/div/ul/li[2]/ul")).Displayed;
+            ////        Console.WriteLine(We_LeftColumnBlockContent.FindElements(By.CssSelector("[class='grower CLOSE']")).Count);
+            //foreach (var item in We_ElementsInSecondList)
+            //{
+
+            //    WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(3));
+            //    Console.WriteLine(item.GetAttribute("style"));
+            //    isDisplayed = wait.Until(Driver => item.Displayed);
+            //    if (!isDisplayed)
+            //    {
+            //        break;
+            //    }
+            //}
             return isDisplayed;
         }
         public IWebElement GetLeftColumnContaine()
