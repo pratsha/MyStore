@@ -1,12 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Edge.SeleniumTools;
 
 namespace MyStore.Drivers
 {
@@ -25,6 +22,14 @@ namespace MyStore.Drivers
         {
             return driver ?? (driver = new ChromeDriver(OutputDirectory));
             
+        }
+        
+        public static IWebDriver GetEdgeDriver()
+        {
+            var options = new EdgeOptions();
+            options.UseChromium = true;
+          
+            return driver ?? (driver = new EdgeDriver(OutputDirectory, options));
         }
 
         //public IWebDriver GetFireFoxDriver()
